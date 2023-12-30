@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar" >
+	<div>
+		<h1>Student Management System</h1>	
+	</div>
+	<div>
+	<a href="/getStudentPage">Get Student</a>
+    <a href="/addStudentPage">Add Student</a>
+    <a href="/getAllStudents">Get All Student</a>
+	</div>
+</nav>
+    <h2>Get Student</h2>
+    <table>
+        <tr>
+            <th>Student ID</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Date of Birth</th>
+            <th>Address</th>
+            <th>Father's Name</th>
+            <th>Mother's Name</th>
+            <th>Blood Group</th>
+            <th>Phone Number</th>
+            <th>AdharNo</th>
+            <th>Image</th>
+            <th>Actions</th>
+        </tr>
+        <tr th:each="student : ${studentList}">
+            <td th:text="${student.stuId}"></td>
+            <td th:text="${student.stuName}"></td>
+            <td th:text="${student.stuGender}"></td>
+            <td th:text="${student.stuDob}"></td>
+            <td th:text="${student.stuAddress}"></td>
+            <td th:text="${student.stufatherName}"></td>
+            <td th:text="${student.stuMotherName}"></td>
+            <td th:text="${student.stuBg}"></td>
+            <td th:text="${student.stuPn}"></td>
+            <td th:text="${student.stuAdharNo}"></td>
+            <td>
+				<img th:if="${student.image}" th:src="@{'/stuProfileImages/'} + ${student.image}" height="50" width="50" alt="Student Image" />
+          </td>
+            <td>
+                <a th:href="@{'/deleteStudent?stuId=' + ${student.stuId}}">Delete</a>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
+ 

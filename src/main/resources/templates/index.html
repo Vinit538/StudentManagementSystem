@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<nav class="navbar" >
+	<div>
+		<h1>Student Management System</h1>	
+	</div>
+	<div>
+	<a href="/getStudentPage">Get Student</a>
+    <a href="/addStudentPage">Add Student</a>
+    <a href="/getAllStudents">Get All Student</a>
+	</div>
+</nav>
+	<div></div>
+    <h2>Welcome to Student Management System</h2>
+    <p th:text="${message}"></p>
+    <a href="/getStudentPage">Get Student</a>
+    <a href="/addStudentPage">Add Student</a>
+    <a href="/getAllStudents"> Get All Students</a>
+</body>
+</html>

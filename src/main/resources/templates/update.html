@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Information</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar" >
+	<div>
+		<h1>Student Management System</h1>	
+	</div>
+	<div>
+	<a href="/getStudentPage">Get Student</a>
+    <a href="/addStudentPage">Add Student</a>
+    <a href="/getAllStudents">Get All Student</a>
+	</div>
+</nav>
+    <div class="container">
+        <h1>Student Information</h1>
+        <hr>
+        <form action="/updateStudent" method="post" enctype="multipart/form-data">
+            <div class="student-info">
+                <div>
+                    <h2>Student Name: <span><input type="text" id="stuName" name="stuName" th:value="${student.stuName}"></span></h2>
+                    <p><span class="label">Student ID</span> <span class="result" th:text="${student.stuId}"></span></p>
+                    <input type="hidden" name="stuId" th:value="${student.stuId}"> <!-- Add hidden field for stuId -->
+                    <p><span class="label">Gender</span> <span><input type="text" id="stuGender" name="stuGender" th:value="${student.stuGender}"></span></p>
+                    <p><span class="label">Date of Birth</span> <span><input type="date" id="stuDob" name="stuDob" th:value="${student.stuDob}"></span></p>
+                    <p><span class="label">Address</span> <span><textarea rows="4" cols="10" id="stuAddress" name="stuAddress" th:text="${student.stuAddress}"></textarea></span></p>
+                    <p><span class="label">Father Name</span> <span><input type="text" id="stufatherName" name="stufatherName" th:value="${student.stufatherName}"></span></p>
+                    <p><span class="label">Mother Name</span> <span><input type="text" id="stuMotherName" name="stuMotherName" th:value="${student.stuMotherName}"></span></p>
+                    <p><span class="label">Blood Group</span> <span><input type="text" id="stuBg" name="stuBg" th:value="${student.stuBg}"></span></p>
+                    <p><span class="label">Phone Number</span> <span><input type="text" id="stuPn" name="stuPn" th:value="${student.stuPn}"></span></p>
+                    <p><span class="label">AdharNo</span> <span><input type="text" id="stuAdharNo" name="stuAdharNo" th:value="${student.stuAdharNo}"></span></p>
+                </div>
+                <img id="studentImage" th:src="@{'/stuProfileImages/' + ${student.image}}" alt="Student Image">
+                <input type="file" id="newImage" name="newImage" style="display: none;"> <!-- File input for new image (hidden by default) -->
+                <button type="button" onclick="changeImage()">Change Image</button> <!-- Button to trigger the image selection -->
+            </div>
+            <button type="submit">Update</button> <!-- Change onclick event to submit the form -->
+        </form>
+    </div>
+
+    <script>
+        function changeImage() {
+            var imageInput = document.getElementById('newImage');
+            imageInput.click(); // Trigger the file input click event
+        }
+
+        // Function to display the selected image
+        function readImageURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('studentImage').src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // Listen for file input change event and call the readImageURL function
+        document.getElementById('newImage').addEventListener('change', function () {
+            readImageURL(this);
+        }); 
+        
+       /*  function changeImage() {
+            var imageInput = document.getElementById('newImage');
+            imageInput.click(); // Trigger the file input click event
+        }
+
+        function previewImage(event) {
+            var input = event.target;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('studentImage').src = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        } */
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Information</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Student Information</h1>
+        <hr>
+         <form action="/updateStudent" method="post">
+        <div class="student-info">
+           
+            <div>
+            
+                <h2>Student Name: <span><input type="text" id="stuName" name="stuName" th:value="${student.stuName}"></span></h2>
+                 <p><span class="label">Student ID</span> <span class="result" th:text="${student.stuId}"></span></p>
+                    <input type="hidden" name="stuId" th:value="${student.stuId}"> Add hidden field for stuId
+                
+                <p><span class="label">Gender</span> <span><input type="text" id="stuGender" name="stuGender" th:value="${student.stuGender}"></span></p>
+                <p><span class="label">Date of Birth</span> <span><input type="date" id="stuDob" name="stuDob" th:value="${student.stuDob}"></span></p>
+                <p><span class="label">Address</span> <span><textarea rows="4" cols="10" id="stuAddress" name="stuAddress" th:text="${student.stuAddress}"></textarea></span></p>
+                <p><span class="label">Father Name</span> <span><input type="text" id="stufatherName" name="stufatherName" th:value="${student.stufatherName}"></span></p>
+                <p><span class="label">Mother Name</span> <span><input type="text" id="stuMotherName" name="stuMotherName" th:value="${student.stuMotherName}"></span></p>
+                <p><span class="label">Blood Group</span> <span><input type="text" id="stuBg" name="stuBg" th:value="${student.stuBg}"></span></p>
+                <p><span class="label">Phone Number</span> <span><input type="text" id="stuPn" name="stuPn" th:value="${student.stuPn}"></span></p>
+            </div>
+            <img th:src="@{'/stuProfileImages/' + ${student.image}}" alt="Student Image">
+        </div>
+        <button onclick="updateStudent()">Update</button>
+       </form>
+    </div>
+
+    <script>
+        function updateStudent() {
+            var stuName = document.getElementById('stuName').value;
+            var stuName = document.getElementById('stuName').value;
+            var stuGender = document.getElementById('stuGender').value;
+            var stuDob = document.getElementById('stuDob').value;
+            var stuAddress = document.getElementById('stuAddress').value;
+            var stufatherName = document.getElementById('stufatherName').value;
+            var stuMotherName = document.getElementById('stuMotherName').value;
+            var stuBg = document.getElementById('stuBg').value;
+            var stuPn = document.getElementById('stuPn').value;
+
+            // Perform AJAX request to update the student information
+            // ...
+
+            // Optional: Display success message or redirect to another page
+            // ...
+        }
+    </script>
+</body>
+</html>
+ -->

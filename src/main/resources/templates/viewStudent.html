@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Information</title>
+<link href="style.css" rel="stylesheet">      
+</head>
+<body>
+    <div class="container">
+        <h1>Student Information</h1>
+        <hr>
+        <div class="student-info">
+            <div>
+                <h2>Student Name :<span th:text="${student.stuName}"></span></h2>
+                <p><span class="label">Student ID</span> <span class="result" th:text="${student.stuId}"></span></p>
+                <p><span class="label">Gender</span> <span class="result" th:text="${student.stuGender}"></span></p>
+                <p><span class="label">Date of Birth</span> <span class="result" th:text="${student.stuDob}"></span></p>
+                <p><span class="label">Address</span> <span class="result" th:text="${student.stuAddress}"></span></p>
+                <p><span class="label">Father Name</span> <span class="result" th:text="${student.stufatherName}"></span></p>
+                <p><span class="label">Mother Name</span> <span class="result" th:text="${student.stuMotherName}"></span></p>
+                <p><span class="label">Blood Group</span> <span class="result" th:text="${student.stuBg}"></span></p>
+                <p><span class="label">Phone Number</span> <span class="result" th:text="${student.stuPn}"></span></p>
+                <p><span class="label">AdharNo</span> <span class="result" th:text="${student.stuAdharNo}"></span></p>
+            </div>
+            <img th:src="@{'/stuProfileImages/' + ${student.image}}" alt="Student Image">
+        </div>
+    </div>
+    <div>
+    	<form action="/updatePage" method="get">
+			 <input type="hidden" name="stuId" th:value="${student.stuId}">
+			 <label>Click the Button to Update Student Details</label>
+			<input type="submit" value="Update Student">			
+    	</form>
+    
+    </div>
+</body>
+</html> 
+
+
+
+
+
+
+
+
+
+

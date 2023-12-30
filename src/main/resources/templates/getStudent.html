@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<nav class="navbar" >
+	<div>
+		<h1>Student Management System</h1>	
+	</div>
+	<div>
+	<a href="/getStudentPage">Get Student</a>
+    <a href="/addStudentPage">Add Student</a>
+    <a href="/getAllStudents">Get All Student</a>
+	</div>
+</nav>
+<div>
+	<form action="/getStudent" method="get">
+	<p></p>
+	<label>Student Id</label>
+	<br>
+	<input type="text" name="stuId" required>
+	<p></p>
+	<input type="submit" value="SUBMIT">
+	</form>
+</div>
+</body>
+</html>
